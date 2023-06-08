@@ -1,18 +1,10 @@
 pipeline {
-    agent none
-    stages{
-stage('sonar_access') {
-    environment {
-        scannerHome = tool 'SonarQubeScanner'
-    }
-    steps {
-        withSonarQubeEnv('sonarqube_service') {
-            sh "${scannerHome}/bin/sonar-scanner"
+    agent { docker { image 'maven:3.9.0-eclipse-temurin-11' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
         }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-    }
-}
     }
 }
