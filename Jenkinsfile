@@ -1,5 +1,5 @@
 pipeline {
-    agent{ label 'linux'}
+    agent none
     stages{
 stage('sonar_access') {
     environment {
