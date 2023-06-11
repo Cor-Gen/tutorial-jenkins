@@ -9,6 +9,7 @@
 //     }
 // }
 
+pipeline{
 node {
   stage('sq1') {
     def scannerHome = tool 'SonarScanner 4.0';
@@ -16,4 +17,5 @@ node {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
+}
 }
