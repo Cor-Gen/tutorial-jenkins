@@ -10,9 +10,7 @@
 // }
 
 node {
-  stage('SCM') {
-    git 'https://github.com/foo/bar.git'
-  }
+
   stage('SonarQube analysis') {
     def scannerHome = tool 'SonarScanner 4.0';
     withSonarQubeEnv('sq1') { // If you have configured more than one global server connection, you can specify its name
