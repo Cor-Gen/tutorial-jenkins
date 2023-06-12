@@ -9,15 +9,9 @@
 //     }
 // }
 
-pipeline{
-node {
-  stages {
-  stage('sq1') {
-    def scannerHome = tool 'SonarScanner 4.0';
-    withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-  }
-  }
+pipeline {
+withSonarQubeEnv('sq1', envOnly: true) {
+  // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
+  println ${env.SONAR_HOST_URL} 
 }
 }
